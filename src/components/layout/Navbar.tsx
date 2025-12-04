@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import algomicsLogo from "@/assets/algomics-logo.png";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -43,17 +44,12 @@ export function Navbar() {
       <nav className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg rotate-45 group-hover:rotate-[55deg] transition-transform duration-300" />
-              <div className="absolute inset-1 bg-background rounded-md rotate-45" />
-              <span className="absolute inset-0 flex items-center justify-center text-primary font-heading font-bold text-lg">
-                A
-              </span>
-            </div>
-            <span className="font-heading font-bold text-xl text-foreground">
-              Algomics
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src={algomicsLogo} 
+              alt="Algomics" 
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}

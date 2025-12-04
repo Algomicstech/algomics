@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import algomicsLogo from "@/assets/algomics-logo.png";
 
 const footerLinks = {
   services: [
@@ -22,17 +23,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg rotate-45" />
-                <div className="absolute inset-1 bg-background rounded-md rotate-45" />
-                <span className="absolute inset-0 flex items-center justify-center text-primary font-heading font-bold text-lg">
-                  A
-                </span>
-              </div>
-              <span className="font-heading font-bold text-xl text-foreground">
-                Algomics
-              </span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src={algomicsLogo} 
+                alt="Algomics" 
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Turning data into 1% better healthcare through advanced bioinformatics,

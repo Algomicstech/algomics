@@ -35,7 +35,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6"
           >
-            <span className="text-foreground">Algomics — </span>
+            <span className="gradient-text-gold">Algomics</span>
+            <br />
             <span className="gradient-text">Turning Data Into</span>
             <br />
             <span className="text-foreground">1% Better Healthcare</span>
@@ -83,11 +84,11 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="relative p-6 rounded-xl bg-card/30 backdrop-blur-sm border border-border/30 group hover:border-primary/30 transition-colors"
+                className="relative p-6 rounded-xl bg-card/30 backdrop-blur-sm border border-border/30 group hover:border-glow-gold/30 transition-colors"
               >
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-glow-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative">
-                  <div className="font-heading text-3xl md:text-4xl font-bold text-primary glow-text mb-1">
+                  <div className="font-heading text-3xl md:text-4xl font-bold text-glow-gold glow-text mb-1">
                     {metric.value}
                   </div>
                   <div className="text-sm text-muted-foreground">{metric.label}</div>
@@ -104,8 +105,8 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.8 }}
           className="hidden lg:block"
         >
-          <div className="absolute left-[10%] top-1/3 p-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 animate-float">
-            <Database className="w-8 h-8 text-primary" />
+          <div className="absolute left-[10%] top-1/3 p-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-glow-gold/30 animate-float">
+            <Database className="w-8 h-8 text-glow-gold" />
           </div>
           <div className="absolute right-[10%] top-1/2 p-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 animate-float-delayed">
             <Brain className="w-8 h-8 text-secondary" />
@@ -124,7 +125,7 @@ export function HeroSection() {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 rounded-full bg-primary"
+            className="w-1.5 h-1.5 rounded-full bg-glow-gold"
           />
         </div>
       </motion.div>

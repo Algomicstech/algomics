@@ -55,6 +55,7 @@ export default {
           cyan: "hsl(var(--glow-cyan))",
           purple: "hsl(var(--glow-purple))",
           teal: "hsl(var(--glow-teal))",
+          gold: "hsl(var(--glow-gold))",
         },
         surface: {
           elevated: "hsl(var(--surface-elevated))",

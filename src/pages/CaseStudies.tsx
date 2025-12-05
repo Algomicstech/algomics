@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Dna, Brain, BarChart3, Microscope } from "lucide-react";
+import { ArrowRight, Dna, Brain, BarChart3, Microscope, Network, Scan, GitBranch, Activity } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -10,6 +10,19 @@ import { GlowCard } from "@/components/shared/GlowCard";
 
 const caseStudies = [
   {
+    icon: Network,
+    title: "Cancer Patient Stratification Using GNN with Multi-omics Data",
+    category: "Precision Oncology",
+    description: "Developed a Graph Neural Network model integrating genomics, transcriptomics, and clinical data to stratify cancer patients into treatment response groups, enabling personalized therapy selection.",
+    results: [
+      "Integrated 5 omics data types",
+      "91% stratification accuracy",
+      "Identified 3 distinct patient subgroups",
+      "Reduced treatment selection time by 60%",
+    ],
+    color: "gold",
+  },
+  {
     icon: Dna,
     title: "Multi-omics Cancer Biomarker Discovery",
     category: "Precision Oncology",
@@ -18,6 +31,19 @@ const caseStudies = [
       "Identified 12 novel biomarker candidates",
       "85% validation accuracy in independent cohort",
       "Published in peer-reviewed journal",
+    ],
+    color: "primary",
+  },
+  {
+    icon: Scan,
+    title: "Single-Cell Atlas of Tumor Microenvironment",
+    category: "Single-Cell Genomics",
+    description: "Comprehensive single-cell RNA-seq analysis of tumor microenvironment revealing immune cell populations, their states, and interactions with cancer cells.",
+    results: [
+      "Analyzed 150,000+ single cells",
+      "Identified 25 distinct cell populations",
+      "Discovered novel T-cell exhaustion signatures",
+      "Mapped cell-cell communication networks",
     ],
     color: "primary",
   },
@@ -34,6 +60,19 @@ const caseStudies = [
     color: "secondary",
   },
   {
+    icon: GitBranch,
+    title: "Single-Cell Trajectory Analysis in Development",
+    category: "Developmental Biology",
+    description: "Mapped cellular differentiation trajectories during organ development using single-cell RNA-seq, identifying key transcription factors and regulatory networks.",
+    results: [
+      "Reconstructed complete differentiation paths",
+      "Identified 8 key regulatory TFs",
+      "Built gene regulatory network model",
+      "Validated findings experimentally",
+    ],
+    color: "gold",
+  },
+  {
     icon: BarChart3,
     title: "RNA-Seq Analysis for Drug Response Prediction",
     category: "Pharmacogenomics",
@@ -44,6 +83,19 @@ const caseStudies = [
       "Enabled personalized treatment selection",
     ],
     color: "teal",
+  },
+  {
+    icon: Activity,
+    title: "EEG-based Biomarkers for Neurological Disorders",
+    category: "Neuroinformatics",
+    description: "Developed machine learning models using EEG features to identify early biomarkers for neurological disorders, enabling earlier intervention.",
+    results: [
+      "Analyzed 500+ EEG recordings",
+      "Achieved 88% classification accuracy",
+      "Identified frequency-specific markers",
+      "Reduced diagnostic time by 40%",
+    ],
+    color: "secondary",
   },
   {
     icon: Microscope,
@@ -76,7 +128,7 @@ const CaseStudies = () => {
               className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
             >
               <span className="text-foreground">Case Studies & </span>
-              <span className="gradient-text">Insights</span>
+              <span className="gradient-text-gold">Insights</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -105,11 +157,11 @@ const CaseStudies = () => {
               >
                 <GlowCard className="h-full">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/10 border border-primary/20">
-                      <study.icon className="w-6 h-6 text-primary" />
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${study.color === 'gold' ? 'from-glow-gold/20 to-glow-gold/5 border-glow-gold/20' : 'from-primary/20 to-secondary/10 border-primary/20'} border`}>
+                      <study.icon className={`w-6 h-6 ${study.color === 'gold' ? 'text-glow-gold' : 'text-primary'}`} />
                     </div>
                     <div>
-                      <span className="text-xs text-primary font-medium uppercase tracking-wider">
+                      <span className={`text-xs font-medium uppercase tracking-wider ${study.color === 'gold' ? 'text-glow-gold' : 'text-primary'}`}>
                         {study.category}
                       </span>
                       <h3 className="font-heading text-xl font-semibold text-foreground">
@@ -127,7 +179,7 @@ const CaseStudies = () => {
                     <ul className="space-y-2">
                       {study.results.map((result, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2" />
+                          <div className={`w-1.5 h-1.5 rounded-full mt-2 ${study.color === 'gold' ? 'bg-glow-gold' : 'bg-primary'}`} />
                           {result}
                         </li>
                       ))}
@@ -152,7 +204,7 @@ const CaseStudies = () => {
           >
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
               <span className="text-foreground">Have a Similar </span>
-              <span className="gradient-text">Project?</span>
+              <span className="gradient-text-gold">Project?</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
               Let's discuss how our expertise can help you achieve your research goals.

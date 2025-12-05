@@ -11,37 +11,49 @@ const team = [
     name: "Sheraz Ahmad",
     role: "Founder & CEO",
     bio: "Bioinformatics researcher specializing in multi-omics, deep learning, and neuroinformatics.",
-    image: "SA",
+    image: "/team/sheraz.jpg",
+    fallbackInitials: "SA",
+    linkedin: "https://www.linkedin.com/company/algomics/",
   },
   {
     name: "Taimoor Qadir",
     role: "COO",
     bio: "Operations, management, and automation pipelines specialist driving organizational excellence.",
-    image: "TQ",
+    image: "/team/taimoor.jpg",
+    fallbackInitials: "TQ",
+    linkedin: "https://www.linkedin.com/in/taimoor-qadir-9883451b9/",
   },
   {
     name: "Muhammad Hammad",
     role: "CTO",
     bio: "Tech lead for infrastructure, automation, and backend ML systems architecture.",
-    image: "MH",
+    image: "/team/hammad.jpg",
+    fallbackInitials: "MH",
+    linkedin: "https://www.linkedin.com/in/hafiz-muhammad-hammad-hmh/",
   },
   {
     name: "Zaeem Ali",
     role: "Bioinformatician / Data Scientist",
     bio: "Expert in NGS pipelines, ML models, and multi-omics data integration.",
-    image: "ZA",
+    image: "/team/zaeem.jpg",
+    fallbackInitials: "ZA",
+    linkedin: "https://www.linkedin.com/in/zaeem-ali-0075ab234/",
   },
   {
     name: "Mudasir Alvi",
     role: "Chief Bioinformatics Analyst",
     bio: "Specialist in genomics, variant calling, RNA-seq analysis, and quality control.",
-    image: "MA",
+    image: null,
+    fallbackInitials: "MA",
+    linkedin: null,
   },
   {
     name: "Saman Shabbir",
     role: "Bioinformatics Analyst",
     bio: "Transcriptomics, annotation pipelines, and wet-lab integration specialist.",
-    image: "SS",
+    image: null,
+    fallbackInitials: "SS",
+    linkedin: null,
   },
 ];
 
@@ -62,7 +74,7 @@ const About = () => {
               className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
             >
               <span className="text-foreground">About </span>
-              <span className="gradient-text">Algomics</span>
+              <span className="gradient-text-gold">Algomics</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -85,7 +97,7 @@ const About = () => {
               <h2 className="font-heading text-2xl font-bold text-foreground mb-4">Our Mission</h2>
               <p className="text-muted-foreground leading-relaxed">
                 To unlock the hidden patterns in biological data and make healthcare 
-                <span className="text-primary font-semibold"> 1% better every day</span>. 
+                <span className="text-glow-gold font-semibold"> 1% better every day</span>. 
                 We believe that even small, data-powered improvements can transform lives 
                 and revolutionize how we approach medicine.
               </p>
@@ -139,7 +151,7 @@ const About = () => {
           <div className="text-center mb-16">
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
               <span className="text-foreground">Meet Our </span>
-              <span className="gradient-text">Team</span>
+              <span className="gradient-text-gold">Team</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               A passionate team of bioinformaticians, data scientists, and researchers 
@@ -156,35 +168,54 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="group relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300"
+                className="group relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-glow-gold/30 transition-all duration-300"
               >
                 {/* Glow effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-glow-gold/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 <div className="relative z-10 text-center">
                   {/* Avatar */}
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-heading font-bold text-xl">
-                    {member.image}
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-24 h-24 mx-auto mb-4 rounded-full object-cover border-2 border-glow-gold/30"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = target.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <div 
+                    className={`w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-glow-gold to-secondary items-center justify-center text-primary-foreground font-heading font-bold text-xl ${member.image ? 'hidden' : 'flex'}`}
+                  >
+                    {member.fallbackInitials}
                   </div>
                   
                   <h3 className="font-heading text-lg font-semibold text-foreground mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-primary text-sm font-medium mb-3">{member.role}</p>
+                  <p className="text-glow-gold text-sm font-medium mb-3">{member.role}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                     {member.bio}
                   </p>
                   
                   {/* Social links */}
                   <div className="flex items-center justify-center gap-2">
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-muted/50 text-muted-foreground hover:bg-glow-gold/20 hover:text-glow-gold transition-colors"
+                      >
+                        <Linkedin size={16} />
+                      </a>
+                    )}
                     <a
-                      href="#"
-                      className="p-2 rounded-lg bg-muted/50 text-muted-foreground hover:bg-primary/20 hover:text-primary transition-colors"
-                    >
-                      <Linkedin size={16} />
-                    </a>
-                    <a
-                      href="#"
+                      href="mailto:contact@algomicstech.com"
                       className="p-2 rounded-lg bg-muted/50 text-muted-foreground hover:bg-primary/20 hover:text-primary transition-colors"
                     >
                       <Mail size={16} />

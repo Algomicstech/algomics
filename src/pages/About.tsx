@@ -5,8 +5,6 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
 import { GlowCard } from "@/components/shared/GlowCard";
-import aboutAbstract from "@/assets/about-abstract.png";
-
 const team = [
   {
     name: "Sheraz Ahmad",
@@ -86,22 +84,8 @@ const About = () => {
               >
                 A Pakistan-based healthcare research and bioinformatics company building 
                 data-driven solutions for biology, medicine, and precision health.
-              </motion.p>
+            </motion.p>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="hidden lg:block"
-            >
-              <motion.img
-                src={aboutAbstract}
-                alt="Team collaboration"
-                className="w-full max-w-md mx-auto"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </motion.div>
           </div>
         </div>
       </section>

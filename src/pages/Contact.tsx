@@ -10,6 +10,7 @@ import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
 import { GlowCard } from "@/components/shared/GlowCard";
 import { toast } from "sonner";
+import contactAbstract from "@/assets/contact-abstract.png";
 
 const contactInfo = [
   {
@@ -279,13 +280,21 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="rounded-2xl overflow-hidden border border-border/50 bg-card/30 h-64 flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <MapPin size={48} className="mx-auto mb-2 text-primary/50" />
-                  <p className="text-sm">Barakahu, Islamabad, Pakistan</p>
-                </div>
-              </div>
+              {/* Abstract Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="rounded-2xl overflow-hidden"
+              >
+                <motion.img
+                  src={contactAbstract}
+                  alt="Contact visualization"
+                  className="w-full max-w-sm mx-auto"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </motion.div>
             </motion.div>
           </div>
         </div>

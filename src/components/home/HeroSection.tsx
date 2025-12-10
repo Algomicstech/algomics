@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Database, Brain, Dna } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
+import heroAbstract from "@/assets/hero-abstract.png";
 
 const metrics = [
   { value: "50+", label: "Bioinformatics Analyses" },
@@ -14,6 +15,21 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
       <AbstractShapes variant="hero" />
+      
+      {/* Background Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 0.4, scale: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0 z-0"
+      >
+        <img 
+          src={heroAbstract} 
+          alt="" 
+          className="w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </motion.div>
       
       <div className="container mx-auto px-4 lg:px-8 pt-24 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center">

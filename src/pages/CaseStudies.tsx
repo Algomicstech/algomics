@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
 import { GlowCard } from "@/components/shared/GlowCard";
-import casestudyAbstract from "@/assets/casestudy-abstract.png";
-
 const caseStudies = [
   {
     icon: Network,
@@ -142,20 +140,6 @@ const CaseStudies = () => {
                 the power of their biological data through our bioinformatics solutions.
               </motion.p>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="hidden lg:block"
-            >
-              <motion.img
-                src={casestudyAbstract}
-                alt="Case studies visualization"
-                className="w-full max-w-md mx-auto"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </motion.div>
           </div>
         </div>
       </section>

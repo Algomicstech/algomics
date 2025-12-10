@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
 import { GlowCard } from "@/components/shared/GlowCard";
+import aboutAbstract from "@/assets/about-abstract.png";
 
 const team = [
   {
@@ -66,25 +67,41 @@ const About = () => {
       <section className="relative pt-32 pb-20 overflow-hidden hero-gradient">
         <AbstractShapes variant="hero" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              >
+                <span className="text-foreground">About </span>
+                <span className="gradient-text-gold">Algomics</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+              >
+                A Pakistan-based healthcare research and bioinformatics company building 
+                data-driven solutions for biology, medicine, and precision health.
+              </motion.p>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="hidden lg:block"
             >
-              <span className="text-foreground">About </span>
-              <span className="gradient-text-gold">Algomics</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed"
-            >
-              A Pakistan-based healthcare research and bioinformatics company building 
-              data-driven solutions for biology, medicine, and precision health.
-            </motion.p>
+              <motion.img
+                src={aboutAbstract}
+                alt="Team collaboration"
+                className="w-full max-w-md mx-auto"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
           </div>
         </div>
       </section>

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Dna, Database, Brain, HeartPulse, ArrowRight } from "lucide-react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { GlowCard } from "@/components/shared/GlowCard";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
+import dnaAbstract from "@/assets/dna-abstract.png";
 
 const services = [
   {
@@ -41,15 +43,33 @@ export function WhatWeDoSection() {
       <AbstractShapes variant="section" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="text-foreground">What </span>
-            <span className="gradient-text">We Do</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We transform complex biological data into actionable insights that drive healthcare innovation.
-          </p>
+        {/* Section Header with Image */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="text-left">
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              <span className="text-foreground">What </span>
+              <span className="gradient-text">We Do</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              We transform complex biological data into actionable insights that drive healthcare innovation.
+            </p>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative hidden lg:block"
+          >
+            <motion.img 
+              src={dnaAbstract} 
+              alt="DNA visualization" 
+              className="w-full max-w-sm mx-auto rounded-2xl"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background pointer-events-none" />
+          </motion.div>
         </div>
 
         {/* Services Grid */}

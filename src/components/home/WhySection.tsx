@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, Zap, Shield, Users } from "lucide-react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { AbstractShapes } from "@/components/shared/AbstractShapes";
+import molecularAbstract from "@/assets/molecular-abstract.png";
 
 const reasons = [
   {
@@ -33,7 +34,7 @@ export function WhySection() {
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Abstract Figure */}
+          {/* Left: Abstract Figure with Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -42,35 +43,31 @@ export function WhySection() {
             className="relative"
           >
             <div className="relative aspect-square max-w-md mx-auto">
-              {/* Main circle */}
-              <div className="absolute inset-0 rounded-full border-2 border-primary/20 animate-spin-slow" />
+              {/* Molecular Image */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10"
+              >
+                <img 
+                  src={molecularAbstract} 
+                  alt="Molecular visualization" 
+                  className="w-full h-full object-contain rounded-2xl"
+                />
+              </motion.div>
               
-              {/* Inner circles */}
-              <div className="absolute inset-8 rounded-full border border-secondary/20 animate-spin-slow" style={{ animationDirection: 'reverse' }} />
-              <div className="absolute inset-16 rounded-full border border-primary/30" />
-              
-              {/* Center glow */}
-              <div className="absolute inset-24 rounded-full bg-gradient-to-br from-primary/30 to-secondary/20 blur-2xl animate-pulse-glow" />
+              {/* Glow effect behind image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-glow-gold/10 blur-3xl -z-10" />
               
               {/* Floating elements */}
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0"
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 pointer-events-none"
               >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-secondary shadow-lg shadow-secondary/50" />
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-glow-teal shadow-lg shadow-glow-teal/50" />
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary/60 shadow-lg shadow-primary/50" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-glow-gold/60 shadow-lg shadow-glow-gold/50" />
               </motion.div>
-
-              {/* Center content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="font-heading text-5xl lg:text-6xl font-bold gradient-text mb-2">1%</div>
-                  <div className="text-muted-foreground text-sm">Better Every Day</div>
-                </div>
-              </div>
             </div>
           </motion.div>
 

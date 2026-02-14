@@ -18,17 +18,12 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-card/30 border-t border-border/50">
+    <footer className="border-t border-border">
       <div className="container mx-auto px-4 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center">
-              <img 
-                src={algomicsLogo} 
-                alt="Algomics" 
-                className="h-10 w-auto object-contain"
-              />
+            <Link to="/">
+              <img src={algomicsLogo} alt="Algomics" className="h-8 w-auto object-contain" />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Turning data into 1% better healthcare through advanced bioinformatics,
@@ -39,29 +34,25 @@ export function Footer() {
                 href="https://www.linkedin.com/company/algomics/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-muted/50 text-muted-foreground hover:bg-primary/20 hover:text-primary transition-colors"
+                className="p-2 rounded text-muted-foreground hover:text-primary transition-colors"
               >
-                <Linkedin size={18} />
+                <Linkedin size={16} />
               </a>
               <a
                 href="mailto:contact@algomicstech.com"
-                className="p-2 rounded-lg bg-muted/50 text-muted-foreground hover:bg-primary/20 hover:text-primary transition-colors"
+                className="p-2 rounded text-muted-foreground hover:text-primary transition-colors"
               >
-                <Mail size={18} />
+                <Mail size={16} />
               </a>
             </div>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4">Services</h4>
+            <h4 className="text-sm font-medium text-foreground mb-4">Services</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                  >
+                  <Link to={link.href} className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -69,16 +60,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4">Company</h4>
+            <h4 className="text-sm font-medium text-foreground mb-4">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-muted-foreground text-sm hover:text-primary transition-colors"
-                  >
+                  <Link to={link.href} className="text-muted-foreground text-sm hover:text-foreground transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -86,31 +73,30 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4">Contact</h4>
+            <h4 className="text-sm font-medium text-foreground mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
-                <Phone size={16} className="mt-0.5 text-primary" />
+                <Phone size={14} className="mt-0.5 text-primary" />
                 <span>+92 3176364092</span>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
-                <Mail size={16} className="mt-0.5 text-primary" />
+                <Mail size={14} className="mt-0.5 text-primary" />
                 <span>contact@algomicstech.com</span>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
-                <MapPin size={16} className="mt-0.5 text-primary" />
+                <MapPin size={14} className="mt-0.5 text-primary" />
                 <span>Barakahu, Islamabad, Pakistan</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-sm">
+        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-muted-foreground text-xs">
             © {new Date().getFullYear()} Algomics. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-xs">
             Turning Data into 1% Better Healthcare
           </p>
         </div>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Dna, Database, Brain, HeartPulse, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -30,21 +31,32 @@ const services = [
 
 export function WhatWeDoSection() {
   return (
-    <section className="py-24 border-t border-border">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-2xl mb-16">
+    <section className="relative py-24 border-t border-border">
+      <div className="absolute inset-0 dot-grid opacity-20" />
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
             What <span className="text-primary">We Do</span>
           </h2>
           <p className="text-muted-foreground text-base">
             We transform complex biological data into actionable insights that drive healthcare innovation.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-lg overflow-hidden">
-          {services.map((service) => (
-            <div
+          {services.map((service, i) => (
+            <motion.div
               key={service.title}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
               className="bg-background p-8 hover:bg-secondary/50 transition-colors group"
             >
               <service.icon className="w-5 h-5 text-primary mb-4" />
@@ -56,11 +68,11 @@ export function WhatWeDoSection() {
               </p>
               <Link
                 to={service.link}
-                className="inline-flex items-center gap-1.5 text-primary text-sm hover:gap-2.5 transition-all"
+                className="inline-flex items-center gap-1.5 text-primary text-sm group-hover:gap-2.5 transition-all"
               >
                 Learn more <ArrowRight size={14} />
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

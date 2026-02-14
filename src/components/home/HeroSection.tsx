@@ -1,9 +1,5 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Database, Brain, Dna } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { AbstractShapes } from "@/components/shared/AbstractShapes";
-import heroAbstract from "@/assets/hero-abstract.png";
+import { ArrowRight } from "lucide-react";
 
 const metrics = [
   { value: "50+", label: "Bioinformatics Analyses" },
@@ -13,138 +9,56 @@ const metrics = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
-      <AbstractShapes variant="hero" />
-      
-      {/* Background Image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 0.4, scale: 1 }}
-        transition={{ duration: 1.5 }}
-        className="absolute inset-0 z-0"
-      >
-        <img 
-          src={heroAbstract} 
-          alt="" 
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </motion.div>
-      
-      <div className="container mx-auto px-4 lg:px-8 pt-24 pb-16 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8"
-          >
-            <Dna size={16} />
-            <span>Precision Health Solutions</span>
-          </motion.div>
+    <section className="relative min-h-screen flex items-center justify-center pt-16">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-sm text-primary tracking-wide uppercase mb-6">
+            Precision Health Solutions
+          </p>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6"
-          >
-            <span className="gradient-text-gold">Algomics</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6 tracking-tight">
+            <span className="text-primary">Algomics</span>
             <br />
-            <span className="gradient-text">Turning Data Into</span>
+            Turning Data Into
             <br />
-            <span className="text-foreground">1% Better Healthcare</span>
-          </motion.h1>
+            1% Better Healthcare
+          </h1>
 
-          {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            We decode biology using advanced bioinformatics, data science, and 
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+            We decode biology using advanced bioinformatics, data science, and
             AI-driven precision health solutions to unlock hidden patterns in biological data.
-          </motion.p>
+          </p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-          >
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/services">
-                Explore Services
-                <ArrowRight size={20} />
-              </Link>
-            </Button>
-            <Button variant="hero-outline" size="xl" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-          </motion.div>
+          <div className="flex items-center justify-center gap-4 mb-20">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
+              Explore Services
+              <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
 
-          {/* Metrics */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto"
-          >
-            {metrics.map((metric, index) => (
-              <motion.div
-                key={metric.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="relative p-6 rounded-xl bg-card/30 backdrop-blur-sm border border-border/30 group hover:border-glow-gold/30 transition-colors"
-              >
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-glow-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative">
-                  <div className="font-heading text-3xl md:text-4xl font-bold text-glow-gold glow-text mb-1">
-                    {metric.value}
-                  </div>
-                  <div className="text-sm text-muted-foreground">{metric.label}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-xl mx-auto">
+            {metrics.map((metric) => (
+              <div key={metric.label} className="text-center">
+                <div className="text-3xl font-semibold text-primary mb-1">
+                  {metric.value}
                 </div>
-              </motion.div>
+                <div className="text-xs text-muted-foreground uppercase tracking-wide">
+                  {metric.label}
+                </div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
-
-        {/* Floating icons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="hidden lg:block"
-        >
-          <div className="absolute left-[10%] top-1/3 p-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-glow-gold/30 animate-float">
-            <Database className="w-8 h-8 text-glow-gold" />
-          </div>
-          <div className="absolute right-[10%] top-1/2 p-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 animate-float-delayed">
-            <Brain className="w-8 h-8 text-secondary" />
-          </div>
-        </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 rounded-full bg-glow-gold"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

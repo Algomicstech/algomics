@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import algomicsLogo from "@/assets/algomics-logo.png";
 
 const navLinks = [
-  { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "About", href: "/about" },
   { name: "Case Studies", href: "/case-studies" },
@@ -21,9 +18,7 @@ export function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,37 +28,28 @@ export function Navbar() {
   }, [location]);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+    <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50" : "bg-transparent"
+        isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border" : "bg-transparent"
       )}
     >
       <nav className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center group">
-            <img 
-              src={algomicsLogo} 
-              alt="Algomics" 
-              className="h-10 w-auto object-contain"
-            />
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center">
+            <img src={algomicsLogo} alt="Algomics" className="h-8 w-auto object-contain" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  "text-sm transition-colors",
                   location.pathname === link.href
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {link.name}
@@ -71,54 +57,50 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button variant="glow" asChild>
-              <Link to="/contact">Get Started</Link>
-            </Button>
+            <Link
+              to="/contact"
+              className="text-sm px-5 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Get Started
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className={cn(
-                    "px-4 py-3 rounded-lg text-base font-medium transition-colors",
-                    location.pathname === link.href
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  )}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Button variant="glow" className="mt-4" asChild>
-                <Link to="/contact">Get Started</Link>
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-background border-b border-border">
+          <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className={cn(
+                  "px-4 py-3 rounded text-sm transition-colors",
+                  location.pathname === link.href
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <Link
+              to="/contact"
+              className="mt-2 text-sm text-center px-5 py-2.5 rounded-md bg-primary text-primary-foreground"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }

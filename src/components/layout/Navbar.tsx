@@ -7,9 +7,11 @@ import { services, serviceCategories } from "@/data/services";
 
 const navLinks = [
   { name: "Services", href: "/services" },
+  { name: "Products", href: "/products" },
   { name: "About", href: "/about" },
   { name: "Case Studies", href: "/case-studies" },
   { name: "Learning", href: "/learning" },
+  { name: "Blogs", href: "/blogs" },
   { name: "Contact", href: "/contact" },
 ];
 

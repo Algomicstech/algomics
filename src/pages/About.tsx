@@ -216,7 +216,7 @@ const About = () => {
                       </a>
                     )}
                     <a
-                      href="mailto:contact@algomicstech.com"
+                      href="mailto:algomics@gmail.com"
                       className="p-2 rounded-lg bg-muted/50 text-muted-foreground hover:bg-primary/20 hover:text-primary transition-colors"
                     >
                       <Mail size={16} />

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import algomicsLogo from "@/assets/algomics-logo.png";
+import { services, serviceCategories } from "@/data/services";
 
 const navLinks = [
   { name: "Services", href: "/services" },
@@ -42,18 +43,66 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className={cn(
-                  "text-sm transition-colors",
-                  location.pathname === link.href
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                )}
-              >
-                {link.name}
-              </Link>
+              link.name === "Services" ? (
+                <div key={link.name} className="relative group">
+                  <Link
+                    to={link.href}
+                    className={cn(
+                      "text-sm transition-colors inline-flex items-center gap-1",
+                      location.pathname.startsWith("/services")
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {link.name}
+                    <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
+                  </Link>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="w-[640px] bg-background/95 backdrop-blur-md border border-border rounded-lg shadow-xl p-6 grid grid-cols-2 gap-x-6 gap-y-5">
+                      {serviceCategories.map((cat) => {
+                        const items = services.filter((s) => s.category === cat.id).slice(0, 5);
+                        return (
+                          <div key={cat.id}>
+                            <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
+                              {cat.title}
+                            </div>
+                            <ul className="space-y-1.5">
+                              {items.map((s) => (
+                                <li key={s.id}>
+                                  <Link
+                                    to={`/services/${s.id}`}
+                                    className="text-sm text-muted-foreground hover:text-foreground transition-colors block"
+                                  >
+                                    {s.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })}
+                      <div className="col-span-2 pt-3 border-t border-border">
+                        <Link to="/services" className="text-sm text-primary hover:underline">
+                          View all services →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={cn(
+                    "text-sm transition-colors",
+                    location.pathname === link.href
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
           </div>
 

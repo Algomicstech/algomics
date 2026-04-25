@@ -39,7 +39,7 @@ export function Footer() {
                 <Linkedin size={16} />
               </a>
               <a
-                href="mailto:contact@algomicstech.com"
+                href="mailto:algomics@gmail.com"
                 className="p-2 rounded text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail size={16} />
@@ -82,7 +82,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
                 <Mail size={14} className="mt-0.5 text-primary" />
-                <span>contact@algomicstech.com</span>
+                <span>algomics@gmail.com</span>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
                 <MapPin size={14} className="mt-0.5 text-primary" />

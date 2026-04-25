@@ -20,8 +20,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "contact@algomicstech.com",
-    href: "mailto:contact@algomicstech.com",
+    value: "algomics@gmail.com",
+    href: "mailto:algomics@gmail.com",
   },
   {
     icon: MapPin,
@@ -270,7 +270,7 @@ const Contact = () => {
                     <Linkedin size={24} />
                   </a>
                   <a
-                    href="mailto:contact@algomicstech.com"
+                    href="mailto:algomics@gmail.com"
                     className="p-3 rounded-lg bg-card/30 border border-border/50 text-muted-foreground hover:bg-primary/20 hover:text-primary hover:border-primary/30 transition-all"
                   >
                     <Mail size={24} />

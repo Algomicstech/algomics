@@ -44,4 +44,40 @@ export const blogs: Blog[] = [
       "The honest caveat: predicted structures are confident hypotheses, not experimental truth. Always check pLDDT and PAE scores, validate critical interactions experimentally, and be skeptical of low-confidence regions — especially loops and disordered segments where prediction quality drops sharply.",
     ],
   },
+  {
+    id: "single-cell-rna-seq-primer",
+    title: "Single-Cell RNA-Seq: A Primer for the Bulk-Trained Bioinformatician",
+    excerpt:
+      "Moving from bulk to single-cell changes almost every assumption — sparsity, normalization, batch effects. A field guide for making the jump without learning the wrong lessons.",
+    date: "March 27, 2026",
+    readTime: "8 min read",
+    author: "Algomics Research",
+    tags: ["scRNA-Seq", "Single-Cell", "Genomics"],
+    content: [
+      "Single-cell RNA-Seq looks like bulk RNA-Seq with more rows. It is not. The data is sparse, dropout is structural, and almost every method you trusted at the bulk level needs to be re-examined before it survives the transition.",
+      "Start with the count matrix. Whether it comes from Cell Ranger, STARsolo, or alevin-fry, the matrix you load into Scanpy or Seurat is dominated by zeros — many of them technical, not biological. Filtering cells by minimum gene counts and genes by minimum cell counts is the first defensive layer; doublet detection with Scrublet or DoubletFinder is the second.",
+      "Normalization is where bulk intuitions break first. Library-size scaling plus log1p is the de-facto baseline, but methods like sctransform model the mean-variance relationship explicitly and often produce cleaner downstream embeddings. Whatever you choose, do it before highly variable gene selection, not after.",
+      "Dimensionality reduction usually means PCA followed by a neighborhood graph and UMAP. UMAP is excellent for visualization and dangerous for interpretation — distances between clusters on a UMAP do not reliably reflect transcriptional distance. Use it to look, not to measure.",
+      "Batch effects are the single biggest source of false biology in scRNA-Seq. Harmony, scVI, and BBKNN each handle integration differently; pick one based on your dataset size and whether you need a generative model. Always inspect pre- and post-integration embeddings side by side — over-correction can erase real biological signal as easily as under-correction lets batch dominate.",
+      "Finally, cell-type annotation. Marker-based labeling is interpretable but brittle; reference-based tools like CellTypist or SingleR scale better across studies. The honest workflow is both: automated labels for speed, manual marker inspection for trust.",
+    ],
+  },
+  {
+    id: "reproducible-bioinformatics-workflows",
+    title: "Reproducible Bioinformatics: Why Your Pipeline Is a Liability Without It",
+    excerpt:
+      "Containers, workflow managers, and version-pinning are not optional luxuries. A pragmatic look at what reproducibility actually costs — and what irreproducibility costs more.",
+    date: "March 12, 2026",
+    readTime: "6 min read",
+    author: "Algomics Research",
+    tags: ["Reproducibility", "Workflows", "DevOps"],
+    content: [
+      "Most bioinformatics analyses are reproducible in principle and irreproducible in practice. The script ran, the figure was made, the paper went out — and six months later nobody can rerun it because a Conda environment drifted, a reference genome got re-released, or a tool silently changed its default parameters.",
+      "The fix is not heroic discipline; it is infrastructure. Three layers do most of the work: containers for the software environment, a workflow manager for the execution graph, and version control for everything that humans touch.",
+      "Containers — Docker, Singularity, or Apptainer — pin the exact binaries your analysis depends on. BioContainers gives you ready-made images for thousands of bioinformatics tools. The discipline is to never run analyses against an unpinned `latest` tag; always reference a specific digest or version.",
+      "Workflow managers — Nextflow and Snakemake are the dominant options — turn a tangle of shell scripts into a declarative graph that the system itself can re-execute, resume, and parallelize. They also force you to make data dependencies explicit, which is half the battle in catching silent bugs.",
+      "Version everything. Code in git, configuration in git, parameter files in git. Reference data and large inputs go in object storage with checksums and a manifest committed to the repo. The goal is that a reviewer in two years can clone the repository, run one command, and reproduce your figures — bit-for-bit when possible, scientifically when not.",
+      "Reproducibility has a real upfront cost. Irreproducibility has a larger ongoing cost: retracted findings, wasted re-analyses, lost institutional knowledge when team members leave. Treat the infrastructure as part of the science, not overhead on top of it.",
+    ],
+  },
 ];

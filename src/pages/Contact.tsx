@@ -51,10 +51,20 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const subject = `New inquiry from ${formData.name || "website"}${formData.service ? ` — ${formData.service}` : ""}`;
+    const bodyLines = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      formData.organization ? `Organization: ${formData.organization}` : "",
+      formData.service ? `Service of interest: ${formData.service}` : "",
+      "",
+      "Message:",
+      formData.message,
+    ].filter(Boolean);
+    const mailto = `mailto:algomics@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = mailto;
 
-    toast.success("Message sent successfully! We'll get back to you soon.");
+    toast.success("Opening your email app to send the message…");
     setFormData({
       name: "",
       email: "",

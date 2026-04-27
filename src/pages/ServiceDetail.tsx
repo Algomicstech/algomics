@@ -11,6 +11,7 @@ import { ServiceAbstractImage } from "@/components/shared/ServiceAbstractImage";
 import { getServiceById, serviceCategories, serviceIconMap } from "@/data/services";
 import rnaSeqHeroBg from "@/assets/rna-seq-hero-bg.png";
 import chipSeqHeroBg from "@/assets/chip-seq-hero-bg.png";
+import atacSeqHeroBg from "@/assets/atac-seq-hero-bg.png";
 
 const workflowIcons = [MessageSquare, Upload, FileText, Download];
 
@@ -26,7 +27,14 @@ const ServiceDetail = () => {
   const imageType = serviceId ? serviceIconMap[serviceId] || "default" : "default";
   const isRnaSeq = serviceId === "rna-seq" || serviceId === "rna-sequencing" || imageType === "rna";
   const isChipSeq = serviceId === "chip-seq-analysis";
-  const customHeroBg = isRnaSeq ? rnaSeqHeroBg : isChipSeq ? chipSeqHeroBg : null;
+  const isAtacSeq = serviceId === "atac-seq-analysis";
+  const customHeroBg = isRnaSeq
+    ? rnaSeqHeroBg
+    : isChipSeq
+    ? chipSeqHeroBg
+    : isAtacSeq
+    ? atacSeqHeroBg
+    : null;
 
   return (
     <div className="min-h-screen bg-background">

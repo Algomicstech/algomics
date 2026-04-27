@@ -9,6 +9,7 @@ import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { GlowCard } from "@/components/shared/GlowCard";
 import { ServiceAbstractImage } from "@/components/shared/ServiceAbstractImage";
 import { getServiceById, serviceCategories, serviceIconMap } from "@/data/services";
+import rnaSeqHeroBg from "@/assets/rna-seq-hero-bg.png";
 
 const workflowIcons = [MessageSquare, Upload, FileText, Download];
 
@@ -22,6 +23,7 @@ const ServiceDetail = () => {
 
   const category = serviceCategories.find((c) => c.id === service.category);
   const imageType = serviceId ? serviceIconMap[serviceId] || "default" : "default";
+  const isRnaSeq = serviceId === "rna-seq" || serviceId === "rna-sequencing" || imageType === "rna";
 
   return (
     <div className="min-h-screen bg-background">
@@ -29,7 +31,18 @@ const ServiceDetail = () => {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden hero-gradient">
-        <AbstractShapes variant="hero" />
+        {isRnaSeq && (
+          <>
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-60"
+              style={{ backgroundImage: `url(${rnaSeqHeroBg})` }}
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          </>
+        )}
+        {!isRnaSeq && <AbstractShapes variant="hero" />}
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <Link
             to="/services"
@@ -82,7 +95,7 @@ const ServiceDetail = () => {
             </div>
 
             {/* Abstract Image */}
-            <motion.div
+            {!isRnaSeq && <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -92,7 +105,7 @@ const ServiceDetail = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-glow-gold/10 via-transparent to-primary/10" />
                 <ServiceAbstractImage type={imageType} className="h-full" />
               </div>
-            </motion.div>
+            </motion.div>}
           </div>
         </div>
       </section>

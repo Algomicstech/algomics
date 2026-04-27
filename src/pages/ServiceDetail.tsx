@@ -38,7 +38,7 @@ const ServiceDetail = () => {
               style={{
                 backgroundImage: `url(${rnaSeqHeroBg})`,
                 backgroundSize: "cover",
-                backgroundPosition: "right 60%",
+                backgroundPosition: "right 90%",
               }}
               aria-hidden="true"
             />

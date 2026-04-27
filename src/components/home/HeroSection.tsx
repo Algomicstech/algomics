@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const metrics = [
   { value: "50+", label: "Bioinformatics Analyses" },
@@ -8,7 +9,66 @@ const metrics = [
   { value: "100M+", label: "Datapoints Analyzed" },
 ];
 
+const TYPE_LINES = ["Turning Data Into", "1% Better Healthcare"];
+
+function useTypewriter(lines: string[], speed = 55, pause = 1600) {
+  const [displayed, setDisplayed] = useState<string[]>(() => lines.map(() => ""));
+  const [lineIdx, setLineIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = lines[lineIdx];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!deleting && charIdx <= current.length) {
+      timeout = setTimeout(() => {
+        setDisplayed((prev) => {
+          const next = [...prev];
+          next[lineIdx] = current.slice(0, charIdx);
+          return next;
+        });
+        setCharIdx((c) => c + 1);
+      }, speed);
+    } else if (!deleting && charIdx > current.length) {
+      if (lineIdx < lines.length - 1) {
+        timeout = setTimeout(() => {
+          setLineIdx((i) => i + 1);
+          setCharIdx(0);
+        }, 250);
+      } else {
+        timeout = setTimeout(() => setDeleting(true), pause);
+      }
+    } else if (deleting) {
+      // delete all lines from the last one back
+      const activeLine = lineIdx;
+      const activeText = displayed[activeLine];
+      if (activeText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayed((prev) => {
+            const next = [...prev];
+            next[activeLine] = activeText.slice(0, -1);
+            return next;
+          });
+        }, speed / 2);
+      } else if (activeLine > 0) {
+        timeout = setTimeout(() => setLineIdx((i) => i - 1), 80);
+      } else {
+        setDeleting(false);
+        setCharIdx(0);
+        setLineIdx(0);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIdx, lineIdx, deleting, displayed, lines, speed, pause]);
+
+  return { displayed, activeLine: lineIdx, deleting };
+}
+
 export function HeroSection() {
+  const { displayed, activeLine } = useTypewriter(TYPE_LINES);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {/* Background effects */}
@@ -35,9 +95,18 @@ export function HeroSection() {
           >
             <span className="text-primary">Algomics</span>
             <br />
-            Turning Data Into
-            <br />
-            1% Better Healthcare
+            <span className="block min-h-[1.2em]">
+              {displayed[0]}
+              {activeLine === 0 && (
+                <span className="inline-block w-[2px] h-[0.9em] align-middle bg-primary ml-1 animate-pulse" />
+              )}
+            </span>
+            <span className="block min-h-[1.2em]">
+              {displayed[1]}
+              {activeLine === 1 && (
+                <span className="inline-block w-[2px] h-[0.9em] align-middle bg-primary ml-1 animate-pulse" />
+              )}
+            </span>
           </motion.h1>
 
           <motion.p

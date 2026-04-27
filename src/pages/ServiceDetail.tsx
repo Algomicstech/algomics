@@ -48,8 +48,8 @@ const ServiceDetail = () => {
               className="absolute inset-0 bg-no-repeat opacity-60"
               style={{
                 backgroundImage: `url(${customHeroBg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "right 90%",
+                backgroundSize: isAtacSeq ? "75% auto" : "cover",
+                backgroundPosition: isAtacSeq ? "right 70%" : "right 90%",
               }}
               aria-hidden="true"
             />

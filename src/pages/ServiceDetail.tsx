@@ -34,8 +34,12 @@ const ServiceDetail = () => {
         {isRnaSeq && (
           <>
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-60"
-              style={{ backgroundImage: `url(${rnaSeqHeroBg})` }}
+              className="absolute inset-0 bg-no-repeat opacity-60"
+              style={{
+                backgroundImage: `url(${rnaSeqHeroBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "right 60%",
+              }}
               aria-hidden="true"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />

@@ -7,12 +7,12 @@ import { AbstractShapes } from "@/components/shared/AbstractShapes";
 import { GlowCard } from "@/components/shared/GlowCard";
 const team = [
   {
-    name: "Sheraz Ahmad",
-    role: "Biomedical Data Engineer",
-    bio: "Bioinformatics researcher specializing in multi-omics, deep learning, and neuroinformatics.",
-    image: "https://avatars.githubusercontent.com/u/79153229?v=4",
-    fallbackInitials: "SA",
-    linkedin: "https://www.linkedin.com/company/algomics/",
+    name: "Muhammad Ali",
+    role: "Head/CEO",
+    bio: "Tech lead for infrastructure, automation, and backend ML systems architecture.",
+    image: "/team/hammad.jpg",
+    fallbackInitials: "MH",
+    linkedin: "https://www.linkedin.com/in/hafiz-muhammad-hammad-hmh/",
   },
   {
     name: "Taimoor Qadir",
@@ -23,12 +23,12 @@ const team = [
     linkedin: "https://www.linkedin.com/in/taimoor-qadir-9883451b9/",
   },
   {
-    name: "Muhammad Ali",
-    role: "Head/CEO",
-    bio: "Tech lead for infrastructure, automation, and backend ML systems architecture.",
-    image: "/team/hammad.jpg",
-    fallbackInitials: "MH",
-    linkedin: "https://www.linkedin.com/in/hafiz-muhammad-hammad-hmh/",
+    name: "Sheraz Ahmad",
+    role: "Biomedical Data Engineer",
+    bio: "Bioinformatics researcher specializing in multi-omics, deep learning, and neuroinformatics.",
+    image: "https://avatars.githubusercontent.com/u/79153229?v=4",
+    fallbackInitials: "SA",
+    linkedin: "https://www.linkedin.com/company/algomics/",
   },
   {
     name: "Zaeem Ali",
